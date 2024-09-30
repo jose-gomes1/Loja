@@ -15,9 +15,7 @@ struct Produto {
 
 // Função para ler produtos do arquivo CSV
 int carregarProdutos(Produto produtos[], int& quantidadeAtual) {
-    ifstream dB("db.csv");
-
-    // Verifica se o arquivo está aberto
+    ifstream dB("db.csv"); //verifica se o ficheiro existe
     if (dB.is_open()) {
         string linha;
         while (getline(dB, linha) && quantidadeAtual < maximoProdutos) {
@@ -33,6 +31,9 @@ int carregarProdutos(Produto produtos[], int& quantidadeAtual) {
             produtos[quantidadeAtual].id = stoi(idStr); //converter uma string em int
             produtos[quantidadeAtual].quantidade = stoi(quantidadeStr);
             produtos[quantidadeAtual].preco = stof(precoStr); //converter uma string em float
+            produtos[quantidadeAtual].id = stoi(idStr);
+            produtos[quantidadeAtual].quantidade = stoi(quantidadeStr);
+            produtos[quantidadeAtual].preco = stof(precoStr);
             produtos[quantidadeAtual].status = statusStr[0];
             quantidadeAtual++;
         }
@@ -43,8 +44,7 @@ int carregarProdutos(Produto produtos[], int& quantidadeAtual) {
 
 // Função para salvar produtos no arquivo CSV
 void salvarProdutos(const Produto produtos[], int quantidadeAtual) {
-    ofstream dB("db.csv");
-    // Verifica se o arquivo está aberto
+    ofstream dB("db.csv"); //cria o ficheiro
     if (dB.is_open()) {
         for (int i = 0; i < quantidadeAtual; i++) {
             dB << produtos[i].id << "," 
