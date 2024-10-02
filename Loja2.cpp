@@ -177,7 +177,6 @@ int main() {
         cout << "Caso não seja do seu incômodo, escolha uma opção: ";
         cin >> opcao;
 
-
         switch (opcao) {
             case 1:
                 adicionarProduto(produtos, quantidadeAtual);
