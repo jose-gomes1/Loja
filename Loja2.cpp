@@ -140,6 +140,23 @@ void eliminarProduto(Produto produtos[], int& quantidadeAtual) {
     cout << "Produto não encontrado." << endl;
 }
 
+// Função para calcular o valor total do stock
+float calcularValorTotal(const Produto produtos[], int quantidadeAtual) {
+    if (quantidadeAtual == 0) {
+        cout << "Nenhum produto cadastrado!" << endl;
+        return 0.0;
+    }
+
+    float valorTotal = 0;
+    for (int i = 0; i < quantidadeAtual; i++) {
+        if(produtos[i].status == 'A'){
+        valorTotal += produtos[i].preco * produtos[i].quantidade;
+    }
+}
+    cout << "Valor total do stock: " << valorTotal << endl;
+    return valorTotal;
+}
+
 // Função para perguntar se o utilizador deseja criar um novo ficheiro
 bool perguntarCriarFicheiro() { //true ou false
     int opcao;
@@ -172,6 +189,7 @@ int main() {
         cout << "2. Exibir Produtos\n";
         cout << "3. Alterar Produto\n";
         cout << "4. Eliminar Produto\n";
+        cout << "5. Calcular valor total do stock ativo\n";
         cout << "0. Sair\n";
         cout << "============================\n";
         cout << "Caso não seja do seu incômodo, escolha uma opção: ";
@@ -189,6 +207,9 @@ int main() {
                 break;
             case 4:
                 eliminarProduto(produtos, quantidadeAtual);
+                break;
+            case 5:
+                calcularValorTotal(produtos, quantidadeAtual);
                 break;
             case 0:
                 cout << "Adeus..." << endl;
