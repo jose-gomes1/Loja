@@ -13,11 +13,11 @@ struct Produto {
     char status; // 'A' para Ativo, 'D' para Eliminado
 };
 
-// Função para ler produtos do arquivo CSV
+// Função para ler produtos do ficheiro CSV
 int carregarProdutos(Produto produtos[], int& quantidadeAtual) {
     ifstream dB("db.csv");
 
-    // Verifica se o arquivo está aberto
+    // Verifica se o ficheiro está aberto
     if (dB.is_open()) {
         string linha;
         while (getline(dB, linha) && quantidadeAtual < maximoProdutos) {
@@ -41,10 +41,10 @@ int carregarProdutos(Produto produtos[], int& quantidadeAtual) {
     return quantidadeAtual;
 }
 
-// Função para salvar produtos no arquivo CSV
+// Função para salvar produtos no ficheiro CSV
 void salvarProdutos(const Produto produtos[], int quantidadeAtual) {
     ofstream dB("db.csv");
-    // Verifica se o arquivo está aberto
+    // Verifica se o ficheiro está aberto
     if (dB.is_open()) {
         for (int i = 0; i < quantidadeAtual; i++) {
             dB << produtos[i].id << "," 
@@ -140,11 +140,11 @@ void eliminarProduto(Produto produtos[], int& quantidadeAtual) {
     cout << "Produto não encontrado." << endl;
 }
 
-// Função para perguntar se o utilizador deseja criar um novo arquivo
-bool perguntarCriarArquivo() { //true ou false
+// Função para perguntar se o utilizador deseja criar um novo ficheiro
+bool perguntarCriarFicheiro() { //true ou false
     int opcao;
-    cout << "Arquivo 'db.csv' não encontrado." << endl;
-    cout << "Estimado utilizador expressa a honrosa vontade de dar início ao processo de criação de um novo arquivo no sistema? (1 - Sim, 2 - Não): ";
+    cout << "Ficheiro 'db.csv' não encontrado." << endl;
+    cout << "Estimado utilizador expressa a honrosa vontade de dar início ao processo de criação de um novo ficheiro no sistema? (1 - Sim, 2 - Não): ";
     cin >> opcao;
     return (opcao == 1);
 }
@@ -152,16 +152,16 @@ bool perguntarCriarArquivo() { //true ou false
 int main() {
     Produto produtos[maximoProdutos]; // Array de produtos
     int quantidadeAtual = 0;
-    // Carregar produtos do arquivo
+    // Carregar produtos do ficheiro
     carregarProdutos(produtos, quantidadeAtual);
 
     // Verifica se algum produto foi carregado
-    if (quantidadeAtual == 0 && !perguntarCriarArquivo()) {
+    if (quantidadeAtual == 0 && !perguntarCriarFicheiro()) {
         cout << "Adeus..." << endl;
         return 0;
     }
 
-    // Caso o utilizador escolha criar um novo arquivo,continua
+    // Caso o utilizador escolha criar um novo ficheiro,continua
     cout << "Já pode começar a adicionar produtos, meu caro." << endl;
 
     int opcao;
